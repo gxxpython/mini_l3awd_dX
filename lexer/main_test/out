@@ -1,0 +1,115 @@
+This code is implementing a lexer for a mini shell program. A lexer is a program component that processes an input string and converts it into a sequence of tokens that can be further processed by a parser.
+
+Here is a brief explanation of the different functions in this code:
+
+is_space(char c) function checks if a character is a whitespace character, including space, tab, vertical tab, carriage return, form feed, and newline.
+
+is_char(char c) function checks if a character is a special character that can be part of a token in the input string, including single quote, double quote, less than, greater than, pipe symbol, dollar sign, whitespace characters, newline, and null character.
+
+in_list() function initializes and returns a pointer to an empty linked list.
+
+new_elem(char *content, int len, enum t_token type, enum t_state state) function creates a new node element for the linked list, containing the token content, length, type, and state.
+
+add_link(t_list *list,t_elm *new) function adds a new element to the end of the linked list.
+
+ft_word(t_list *token,char *str,enum t_state state) function processes a sequence of characters that represent a word token and adds it to the linked list.
+
+ft_check_emp(t_list *list) function checks if the linked list is empty.
+
+quotes(t_list *token,char *str,enum t_state *state,int flag) function processes a sequence of characters that are enclosed in single or double quotes and adds it to the linked list.
+
+toke_init(t_list *token,char *line,int i,enum t_state *state) function initializes and processes a new token from the input string, based on its type, and adds it to the linked list.
+
+lexer(char *line) function takes an input string and processes it into a linked list of tokens, by iterating over the characters in the string and calling the appropriate function to handle each type of token. The function returns the resulting linked list of tokens.
+This code is implementing a lexer for a mini shell program. A lexer is a program component that processes an input string and converts it into a sequence of tokens that can be further processed by a parser.
+
+Here is a brief explanation of the different functions in this code:
+
+is_space(char c) function checks if a character is a whitespace character, including space, tab, vertical tab, carriage return, form feed, and newline.
+
+is_char(char c) function checks if a character is a special character that can be part of a token in the input string, including single quote, double quote, less than, greater than, pipe symbol, dollar sign, whitespace characters, newline, and null character.
+
+in_list() function initializes and returns a pointer to an empty linked list.
+
+new_elem(char *content, int len, enum t_token type, enum t_state state) function creates a new node element for the linked list, containing the token content, length, type, and state.
+
+add_link(t_list *list,t_elm *new) function adds a new element to the end of the linked list.
+
+ft_word(t_list *token,char *str,enum t_state state) function processes a sequence of characters that represent a word token and adds it to the linked list.
+
+ft_check_emp(t_list *list) function checks if the linked list is empty.
+
+quotes(t_list *token,char *str,enum t_state *state,int flag) function processes a sequence of characters that are enclosed in single or double quotes and adds it to the linked list.
+
+toke_init(t_list *token,char *line,int i,enum t_state *state) function initializes and processes a new token from the input string, based on its type, and adds it to the linked list.
+
+lexer(char *line) function takes an input string and processes it into a linked list of tokens, by iterating over the characters in the string and calling the appropriate function to handle each type of token. The function returns the resulting linked list of tokens.
+This code is implementing a lexer for a mini shell program. A lexer is a program component that processes an input string and converts it into a sequence of tokens that can be further processed by a parser.
+
+Here is a brief explanation of the different functions in this code:
+
+is_space(char c) function checks if a character is a whitespace character, including space, tab, vertical tab, carriage return, form feed, and newline.
+
+is_char(char c) function checks if a character is a special character that can be part of a token in the input string, including single quote, double quote, less than, greater than, pipe symbol, dollar sign, whitespace characters, newline, and null character.
+
+in_list() function initializes and returns a pointer to an empty linked list.
+
+new_elem(char *content, int len, enum t_token type, enum t_state state) function creates a new node element for the linked list, containing the token content, length, type, and state.
+
+add_link(t_list *list,t_elm *new) function adds a new element to the end of the linked list.
+
+ft_word(t_list *token,char *str,enum t_state state) function processes a sequence of characters that represent a word token and adds it to the linked list.
+
+ft_check_emp(t_list *list) function checks if the linked list is empty.
+
+quotes(t_list *token,char *str,enum t_state *state,int flag) function processes a sequence of characters that are enclosed in single or double quotes and adds it to the linked list.
+
+toke_init(t_list *token,char *line,int i,enum t_state *state) function initializes and processes a new token from the input string, based on its type, and adds it to the linked list.
+
+lexer(char *line) function takes an input string and processes it into a linked list of tokens, by iterating over the characters in the string and calling the appropriate function to handle each type of token. The function returns the resulting linked list of tokens.
+This code is implementing a lexer for a mini shell program. A lexer is a program component that processes an input string and converts it into a sequence of tokens that can be further processed by a parser.
+
+Here is a brief explanation of the different functions in this code:
+
+is_space(char c) function checks if a character is a whitespace character, including space, tab, vertical tab, carriage return, form feed, and newline.
+
+is_char(char c) function checks if a character is a special character that can be part of a token in the input string, including single quote, double quote, less than, greater than, pipe symbol, dollar sign, whitespace characters, newline, and null character.
+
+in_list() function initializes and returns a pointer to an empty linked list.
+
+new_elem(char *content, int len, enum t_token type, enum t_state state) function creates a new node element for the linked list, containing the token content, length, type, and state.
+
+add_link(t_list *list,t_elm *new) function adds a new element to the end of the linked list.
+
+ft_word(t_list *token,char *str,enum t_state state) function processes a sequence of characters that represent a word token and adds it to the linked list.
+
+ft_check_emp(t_list *list) function checks if the linked list is empty.
+
+quotes(t_list *token,char *str,enum t_state *state,int flag) function processes a sequence of characters that are enclosed in single or double quotes and adds it to the linked list.
+
+toke_init(t_list *token,char *line,int i,enum t_state *state) function initializes and processes a new token from the input string, based on its type, and adds it to the linked list.
+
+lexer(char *line) function takes an input string and processes it into a linked list of tokens, by iterating over the characters in the string and calling the appropriate function to handle each type of token. The function returns the resulting linked list of tokens.
+This code is implementing a lexer for a mini shell program. A lexer is a program component that processes an input string and converts it into a sequence of tokens that can be further processed by a parser.
+
+Here is a brief explanation of the different functions in this code:
+
+is_space(char c) function checks if a character is a whitespace character, including space, tab, vertical tab, carriage return, form feed, and newline.
+
+is_char(char c) function checks if a character is a special character that can be part of a token in the input string, including single quote, double quote, less than, greater than, pipe symbol, dollar sign, whitespace characters, newline, and null character.
+
+in_list() function initializes and returns a pointer to an empty linked list.
+
+new_elem(char *content, int len, enum t_token type, enum t_state state) function creates a new node element for the linked list, containing the token content, length, type, and state.
+
+add_link(t_list *list,t_elm *new) function adds a new element to the end of the linked list.
+
+ft_word(t_list *token,char *str,enum t_state state) function processes a sequence of characters that represent a word token and adds it to the linked list.
+
+ft_check_emp(t_list *list) function checks if the linked list is empty.
+
+quotes(t_list *token,char *str,enum t_state *state,int flag) function processes a sequence of characters that are enclosed in single or double quotes and adds it to the linked list.
+
+toke_init(t_list *token,char *line,int i,enum t_state *state) function initializes and processes a new token from the input string, based on its type, and adds it to the linked list.
+
+lexer(char *line) function takes an input string and processes it into a linked list of tokens, by iterating over the characters in the string and calling the appropriate function to handle each type of token. The function returns the resulting linked list of tokens.
