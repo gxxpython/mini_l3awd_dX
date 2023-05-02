@@ -6,7 +6,7 @@
 /*   By: abouassi <abouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 07:09:33 by abouassi          #+#    #+#             */
-/*   Updated: 2023/05/01 23:53:23 by abouassi         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:36:09 by abouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,9 +129,11 @@ int main(int ac, char **av,char **env)
     {
         all.all_cmd = NULL;
         add_history(input);
-        lunch_shell(input, &all);
+        if(!lunch_shell(input, &all))
+         {
+             execution_mini(&all,env);
+         }
 //------------------------------khasnin awal haja hol ga3 rederiction w outfile 
-        execution_mini(&all,env);
         
         free(input);
         i++;

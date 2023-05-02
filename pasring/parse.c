@@ -114,36 +114,35 @@ void parse_cmd(t_elm **ptr,t_cmd **fcmd)
 {
 	int				size;
 	cmd_pipe		*full_cmd;
-	t_cmd		*fcmd;
-	cmd_pipe *ptr1;
+	//cmd_pipe *ptr1;
 	
 	//fcmd->list_of_red = malloc(sizeof(t_redirect));
 	full_cmd = malloc(sizeof(cmd_pipe));
 	full_cmd->next = NULL;
 	size = count_args((*ptr));
-	printf("==%d\n",size);
+	//printf("==%d\n",size);
 	if (parse_cmd_act(*ptr, &full_cmd) == EXIT_FAILURE)
-		return (NULL);
+		return ;
 	fille_cmd(fcmd,full_cmd);
-	t_cmd		*ptrr = fcmd;
-	while (ptrr)
-	{
-		printf("cmd == %s\n",ptrr->cmd);
-		printf("arg == %s\n",ptrr->args[0]);
-		while (ptrr->list_of_red)
-		{
-			printf("red == %d\n",ptrr->list_of_red->my_redirect);
-			printf("file == %s\n",ptrr->list_of_red->filename);
-			printf("lim == %s\n",ptrr->list_of_red->here_lim);
-			printf("exp == %d\n",ptrr->list_of_red->here_doc_expand);
-			ptrr->list_of_red = ptrr->list_of_red->next;
-		}
-		ptrr = ptrr->next;
-	}
+	// t_cmd		*ptrr = *fcmd;
+	// while (ptrr)
+	// {
+	// 	printf("cmd == %s\n",ptrr->cmd);
+	// 	printf("arg == %s\n",ptrr->args[0]);
+	// 	while (ptrr->list_of_red)
+	// 	{
+	// 		printf("red == %d\n",ptrr->list_of_red->my_redirect);
+	// 		printf("file == %s\n",ptrr->list_of_red->filename);
+	// 		printf("lim == %s\n",ptrr->list_of_red->here_lim);
+	// 		printf("exp == %d\n",ptrr->list_of_red->here_doc_expand);
+	// 		ptrr->list_of_red = ptrr->list_of_red->next;
+	// 	}
+	// 	ptrr = ptrr->next;
+	// }
 	
 }
 
-void parse(t_elm *ptr,t_global *all)
+void parse1(t_elm *ptr,t_global *all)
 {
     // cmd_pipe *con;
     // con = NULL;

@@ -6,7 +6,7 @@
 /*   By: abouassi <abouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 10:12:50 by abouassi          #+#    #+#             */
-/*   Updated: 2023/04/14 17:41:45 by abouassi         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:37:24 by abouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void back_old(t_env **env)
 void cmd_cd(char **path,t_env **env)
 {
     char *join;
-    if (!path)
+    if (!path[0])
     {
         chdir(go_to_home(*env));
         return ;

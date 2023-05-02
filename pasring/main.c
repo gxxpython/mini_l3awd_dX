@@ -6,7 +6,7 @@
 /*   By: abouassi <abouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 08:48:57 by ooussaad          #+#    #+#             */
-/*   Updated: 2023/05/02 00:18:26 by abouassi         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:34:33 by abouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ int	syntax_errors(t_list *list)
 }
 
 
-void lunch_shell(char *line,t_global *all)
+int	lunch_shell(char *line,t_global *all)
 {
-	
-
+	int error;
+	error = 0;
     // while (1)
     // {
 	// 	line = readline("\e[1;34m$MINISHELL => \e[1;37m");
@@ -106,12 +106,13 @@ void lunch_shell(char *line,t_global *all)
 	// 	if (ft_strlen(line) > 0)
 	// 		add_history(line);
 		g_data.lex = lexer(line);
-		if (!syntax_errors(g_data.lex))
+		error =syntax_errors(g_data.lex);
+		if (!error)
 		{
 			parse1(g_data.lex->head,all);
 		}
+		return (error);
 }
-
 // int main(int argc,char **argv,char **envp)
 // {
 // 	(void)argc;

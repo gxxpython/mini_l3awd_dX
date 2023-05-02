@@ -6,7 +6,7 @@
 /*   By: abouassi <abouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 11:31:44 by abouassi          #+#    #+#             */
-/*   Updated: 2023/05/02 00:18:53 by abouassi         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:36:24 by abouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
-
+# include <signal.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <termios.h>
@@ -222,7 +222,7 @@ char			*parse_quotes2(t_elm *ptr1, enum t_token type,enum t_token type2);
 void			fille_cmd(t_cmd **fcmd,cmd_pipe *full_cmd);
 char			**fill_arg(char **src);
 int				count_args(t_elm *elem);
-void lunch_shell(char *line,t_global *all);
+int	lunch_shell(char *line,t_global *all);
 void parse1(t_elm *ptr,t_global *all);
 /*					synatx  ERROR 			*/
 t_elm	*check_unclosed_quotes(t_elm **ptr, enum t_token type);

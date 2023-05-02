@@ -6,7 +6,7 @@
 /*   By: abouassi <abouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:52:34 by abouassi          #+#    #+#             */
-/*   Updated: 2023/05/01 13:35:37 by abouassi         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:47:18 by abouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,11 @@ void	first_child(t_global *all,t_cmd *cmds, char **env,int *fd)
 	pid = fork();
 	if(pid == 0)
 	{
+		if (!cmds->cmd)
+		{
+			exit(0);
+		}
+		
 		if (cmds->out_fd == 1 && cmds->next)
 			dup2(fd[1],1);
 		else
@@ -103,7 +108,7 @@ void	first_child(t_global *all,t_cmd *cmds, char **env,int *fd)
 		}
 		if (execve(path, cmdop, env) == -1)
 		{
-			perror("ERR_EXECVE CMD 1:");
+			check_error2(cmds->cmd);
 			free_all(cmdop, path);
 			exit(1);
 		}
@@ -113,6 +118,10 @@ void call_childs( t_global *all,t_cmd *cmds, char **env,int *fd, int last_fd)
 {
 	char	*path;
 	char	**cmdop;
+	if (!cmds->cmd)
+	{
+		exit(0);
+	}
 	if (cmds->in_fd == 0)
 		dup2(last_fd,0);
 	else
@@ -134,13 +143,13 @@ void call_childs( t_global *all,t_cmd *cmds, char **env,int *fd, int last_fd)
 	path = my_path(cmdop[0], env);
 	if (!path)
 	{
-		check_error2(cmdop[0]);
+		check_error2(cmds->cmd);
 		free_all(cmdop, NULL);
 		exit(1);
 	}
 	if (execve(path, cmdop, env) == -1)
 	{
-		perror("ERR_EXECVE CMD 1:");
+		check_error2(cmds->cmd);
 		free_all(cmdop, path);
 		exit(1);
 	}
