@@ -6,33 +6,53 @@
 /*   By: abouassi <abouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 00:09:24 by ooussaad          #+#    #+#             */
-/*   Updated: 2023/05/01 23:23:19 by abouassi         ###   ########.fr       */
+/*   Updated: 2023/05/02 23:18:21 by abouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/minishell.h"
+void	del_node2(t_elm **head)
+{
+	t_elm	*temp;
 
+	if (*head)
+	{
+		temp = *head;
+		*head = (*head)->next;
+		free(temp);
+	}
+}
 char	*parse_quotes2(t_elm *ptr1, enum t_token type,enum t_token type2)
 {
 	char *str;
 	str = ft_strdup("");
 	t_elm *ptr;
 	ptr = ptr1;
+	if (ptr->prev && ptr->prev->type == TEMP)
+	{
+		str = ft_strjoin(str,ptr->prev->content);
+		//del_node2(&(*ptr)->prev);
+	}
+
 	ptr = ptr->next;
 	ptr->type = type2;
-	while (ptr && ptr->type != type)
+	while (ptr && ptr->type != WHITE_SPACE)
 	{
+		while(ptr->type == type )
+			ptr = ptr->next;
+		if (!ptr || ptr->type == WHITE_SPACE)
+			break;
 		str = ft_strjoin(str,ptr->content);
 		ptr->type = type2;
 		ptr = ptr->next;
 	}
 
-	if (ptr)
-	{
-		ptr->type = type2;
-		ptr = ptr->next;
-	}
-	printf("%s\n", str);
+	// if (ptr)
+	// {
+	// 	ptr->type = type2;
+	// 	ptr = ptr->next;
+	// }
+	
 	return (str);
 }
 
@@ -40,15 +60,20 @@ char	*parse_quotes(t_elm **ptr, enum t_token type)
 {
 	char *str;
 	str = ft_strdup("");
-	*ptr = (*ptr)->next;
-	while (*ptr && (*ptr)->type != type)
+	if ((*ptr)->prev && (*ptr)->prev->type == TEMP)
 	{
-		str = ft_strjoin(str,(*ptr)->content);
-		*ptr = (*ptr)->next;
+		str = ft_strjoin(str,(*ptr)->prev->content);
+		//del_node2(&(*ptr)->prev);
 	}
-
-	if (*ptr)
+	// printf("%s\n",(*ptr)->prev->content);
+	*ptr = (*ptr)->next;
+	while (*ptr &&   (*ptr)->type != WHITE_SPACE)
 	{
+		while((*ptr)->type == type )
+			*ptr = (*ptr)->next;
+		if (!*ptr || (*ptr)->type == WHITE_SPACE)
+			break;
+		str = ft_strjoin(str,(*ptr)->content);
 		*ptr = (*ptr)->next;
 	}
 	return (str);

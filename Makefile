@@ -30,7 +30,7 @@ RM		= rm -rf
 
 CC		= cc
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g2
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
 
 OBJ	= ${SRC:.c=.o}
 

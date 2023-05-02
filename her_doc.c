@@ -6,7 +6,7 @@
 /*   By: abouassi <abouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 10:10:07 by abouassi          #+#    #+#             */
-/*   Updated: 2023/04/30 23:34:17 by abouassi         ###   ########.fr       */
+/*   Updated: 2023/05/02 23:10:06 by abouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void set_red(t_cmd *cmd)
 		}
 		if (red->my_redirect == 7)
 		{
+			
 			cmd->in_fd =cmd->here_doc;
 		}
 		red = red->next;
@@ -47,6 +48,7 @@ void set_her_doc(t_cmd *cmds)
 	{
 		if (red->my_redirect == 7)
 		{
+			printf("%s\n",red->here_lim);
 			cmds->here_doc = her_doc(red);
 		}
 		red = red->next;
