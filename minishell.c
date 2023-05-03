@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouassi <abouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ooussaad <ooussaad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 07:09:33 by abouassi          #+#    #+#             */
-/*   Updated: 2023/05/03 12:52:04 by abouassi         ###   ########.fr       */
+/*   Updated: 2023/05/03 18:41:05 by ooussaad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int main(int ac, char **av,char **env)
     glob_exit = EXIT_SUCCESS;
     store_env(&all.env_list,env);
    // signal(SIGINT, handle_sig);
-    while ((input = readline("minishell>")) != NULL) 
+    while ((input = readline("\e[1;34m$MINISHELL => \e[1;37m")) != NULL) 
     {
         all.all_cmd = NULL;
         add_history(input);

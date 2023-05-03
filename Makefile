@@ -11,7 +11,8 @@ SRC =	errors.c \
 		pasring/parsing_tool_2.c\
 		pasring/redirection.c\
 		lexer/lexer_check.c\
-		lexer/lexer_init.c \
+		lexer/lexer_init.c\
+		lexer/lexer_utiles_2.c\
 		lexer/lexer_utils.c\
 		minishell.c \
 		pwd.c\

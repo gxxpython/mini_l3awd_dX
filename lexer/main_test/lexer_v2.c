@@ -1,4 +1,4 @@
-#include "../../minishell.h"
+#include "../../Includes/minishell.h"
 
 int	is_space(char c)
 {
@@ -118,14 +118,14 @@ int	is_alpha(int c)
 	return (0);
 }
 
-int env_check(t_list *token,char *str,enum t_state *state)
-{
-    int i = 1;
-    while (is_alpha(str[i]) && str[i] != '\n' && str[i] != '\0')
-        i++;
-    add_link(token,new_elem(str,i,ENV,*state));
-    return i;
-}
+// int env_check(t_list *token,char *str,enum t_state *state)
+// {
+//     int i = 1;
+//     while (is_alpha(str[i]) && str[i] != '\n' && str[i] != '\0')
+//         i++;
+//     add_link(token,new_elem(str,i,ENV,*state));
+//     return i;
+// }
 
 int check_operator(t_list *token,char *str,int i,enum t_state *state)
 {
@@ -150,15 +150,47 @@ int check_operator(t_list *token,char *str,int i,enum t_state *state)
     return (i - j);
 }
 
-// int	file_name(t_list *token,char *line,int i,	enum t_state state)
-// {
-// 	while (!is_space(line[i]))
-// 	{
-// 		i++;
-// 	}
-// 	add_link(token, new_elem(line, i, FILENAME, state));
-// 	return (i);
-// }
+
+int	get_env_var(t_list *tokens, char *str, enum t_state state)
+{
+	int	i;
+
+	i = 1;
+	if (str[i] == '?' || (str[i] >= '0' && str[i] <= '9'))
+		i++;
+	else
+		while (is_alpha(str[i]) && str[i] != '\n' && str[i] != '\0')
+			i++;
+	add_link(tokens, new_elem(str, i, ENV, state));
+	return (i);
+}
+
+int env_check(t_list *token,char *str,enum t_state *state)
+{
+    int i = 1;
+	while (is_alpha(str[i]) && str[i] != '\n' && str[i] != '\0')
+        i++;
+	add_link(token,new_elem(str,i,ENV,*state));
+	return i;
+}
+
+int env_white(t_list *token,char *str,enum t_state *state)
+{
+    int i = 1;
+	while (is_alpha(str[i]) && str[i] != '\n' && str[i] != '\0')
+        i++;
+	add_link(token,new_elem(str,i,WORD,*state));
+	return i;
+}
+
+int env_signe(t_list *token,char *str,enum t_state *state)
+{
+    int i = 1;
+	while (!ft_isalpha(str[i]) && str[i] != ' ' && str[i] != '$')
+		i++;
+	add_link(token, new_elem(str, i, ENV, *state));
+	return i;
+}
 
 int	toke_init(t_list *token,char *line,int i,enum t_state *state)
 {
@@ -176,8 +208,19 @@ int	toke_init(t_list *token,char *line,int i,enum t_state *state)
 	{
 		add_link(token, new_elem(line + (i++), 1, WHITE_SPACE, *state));
 	}
-	else if (line[i] == '$')
-        i+=env_check(token, line ,state);
+	else if (line[i] == '$'  && line[i + 1] != '?')
+	{
+		if (line[i + 1] == ' ')
+		{
+			i+=env_white(token, line + i, state);
+		}
+		else
+			i += get_env_var(token, line + i, *state);
+	}
+	else if(line[i] == '$'  && line[i + 1] == '?')
+	{
+		i+=env_signe(token, &line[i] ,state);
+	}
     return (i);
 }
 

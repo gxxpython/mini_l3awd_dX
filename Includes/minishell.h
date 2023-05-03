@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouassi <abouassi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ooussaad <ooussaad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 11:31:44 by abouassi          #+#    #+#             */
-/*   Updated: 2023/05/03 11:50:20 by abouassi         ###   ########.fr       */
+/*   Updated: 2023/05/03 18:36:08 by ooussaad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,6 +259,10 @@ void	quotes(t_list *token, char *str, enum t_state *state, int flag);
 int		is_char(char c);
 int		toke_init(t_list *token, char *line, int i, enum t_state *state);
 t_list	*lexer(char *line);
+int		get_env_var(t_list *tokens, char *str, enum t_state state);
+int 	env_check(t_list *token,char *str,enum t_state *state);
+int 	env_white(t_list *token,char *str,enum t_state *state);
+int 	env_signe(t_list *token,char *str,enum t_state *state);
 
 //// PROBELMES 
 
