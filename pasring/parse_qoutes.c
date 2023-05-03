@@ -6,7 +6,7 @@
 /*   By: abouassi <abouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 00:09:24 by ooussaad          #+#    #+#             */
-/*   Updated: 2023/05/02 23:18:21 by abouassi         ###   ########.fr       */
+/*   Updated: 2023/05/03 13:58:10 by abouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ char	*parse_quotes2(t_elm *ptr1, enum t_token type,enum t_token type2)
 	while (ptr && ptr->type != WHITE_SPACE)
 	{
 		while(ptr->type == type )
+		{
+			ptr->type = type2;
 			ptr = ptr->next;
+		}
 		if (!ptr || ptr->type == WHITE_SPACE)
 			break;
 		str = ft_strjoin(str,ptr->content);

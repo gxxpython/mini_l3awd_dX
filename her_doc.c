@@ -6,11 +6,20 @@
 /*   By: abouassi <abouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 10:10:07 by abouassi          #+#    #+#             */
-/*   Updated: 2023/05/02 23:10:06 by abouassi         ###   ########.fr       */
+/*   Updated: 2023/05/03 11:36:40 by abouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./Includes/minishell.h"
+// void handle_sig2(int signum)
+// {
+//    if (signum == 2)
+//    {
+//    // write(1,"\nminishell>",11);
+//     exit(0);
+//    }
+   
+// }
 void set_red(t_cmd *cmd)
 {
 	t_redirect *red;
@@ -48,7 +57,7 @@ void set_her_doc(t_cmd *cmds)
 	{
 		if (red->my_redirect == 7)
 		{
-			printf("%s\n",red->here_lim);
+			//printf("%s\n",red->here_lim);
 			cmds->here_doc = her_doc(red);
 		}
 		red = red->next;
@@ -65,6 +74,8 @@ int her_doc(t_redirect *red)
 	pid = fork();
 	if (pid == 0)
 	{
+		
+		//signal(SIGINT, handle_sig2);
 		while (1)
 		{
 			input = readline(">");

@@ -6,15 +6,21 @@
 /*   By: abouassi <abouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 07:09:33 by abouassi          #+#    #+#             */
-/*   Updated: 2023/05/02 23:22:28 by abouassi         ###   ########.fr       */
+/*   Updated: 2023/05/03 12:52:04 by abouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./Includes/minishell.h"
-void signal_handler(int signum)
-{
-   printf("Received signal %d\n", signum);
-}
+// void handle_sig(int signum)
+// {
+//     if (signum == SIGINT) {
+//         printf("\n");
+//         rl_clear_history();
+//         rl_on_new_line();
+//         printf("minishell> ");
+//     }
+   
+// }
 int  cheackis_buil(char *cmd)
 {
         if (!ft_strcmp(cmd,"env"))
@@ -125,13 +131,14 @@ int main(int ac, char **av,char **env)
     
     glob_exit = EXIT_SUCCESS;
     store_env(&all.env_list,env);
+   // signal(SIGINT, handle_sig);
     while ((input = readline("minishell>")) != NULL) 
     {
         all.all_cmd = NULL;
         add_history(input);
         if(!lunch_shell(input, &all))
          {
-            // execution_mini(&all,env);
+            execution_mini(&all,env);
          }
 //------------------------------khasnin awal haja hol ga3 rederiction w outfile 
         

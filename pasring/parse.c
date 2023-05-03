@@ -27,6 +27,18 @@ int	parse_cmd_act(t_elm *ptr,cmd_pipe **cmds)
 	int i;
 	i = 0;
 	ptr1 = ptr;
+	while(ptr1)
+	{
+			if (ptr1->type == DOUBLE_QUOTE || ptr1->type == QOUTE)
+			{
+				if (ptr1->prev && ptr1->prev->type == WORD)
+					ptr1->prev->type = TEMP;
+				if (!ptr1->next->next || ptr1->next->type == WHITE_SPACE)
+					ptr1->prev->type = WORD;
+			}
+			ptr1 = ptr1->next;
+	}
+	ptr1 = ptr;
 	while (ptr1)
 	{
 		if (ptr1->type == LESS_RED)
@@ -37,14 +49,11 @@ int	parse_cmd_act(t_elm *ptr,cmd_pipe **cmds)
 					ptr1 = ptr1->next;
 					while (ptr1->type == WHITE_SPACE)
 						ptr1 = ptr1->next;
+					if (ptr1->type == TEMP)
+						ptr1 = ptr1->next;
 					if (ptr1->type == DOUBLE_QUOTE || ptr1->type == QOUTE)
 					{
-						if (ptr1->prev && ptr1->prev->type == WORD)
-							ptr1->prev->type = TEMP;
-						if (!ptr1->next->next || ptr1->next->type == WHITE_SPACE)
-							ptr1->prev->type = WORD;
 						ptr1->content = parse_quotes2(ptr1,ptr1->type,LIMIT);
-						//printf("%s\n", ptr1->content);
 						ptr1->type  = LIMIT;
 					}
 					else
@@ -62,20 +71,11 @@ int	parse_cmd_act(t_elm *ptr,cmd_pipe **cmds)
 					ptr1 = ptr1->next;
 					while (ptr1->type == WHITE_SPACE)
 						ptr1 = ptr1->next;
-					if (ptr1->next && ptr1->type == WORD &&( ptr1->next->type == DOUBLE_QUOTE || ptr1->next->type == QOUTE) )
-					{
+					if (ptr1->type == TEMP)
 						ptr1 = ptr1->next;
-					}
-					
 					if (ptr1->type == DOUBLE_QUOTE || ptr1->type == QOUTE)
 					{
-						printf("jhjhhh\n");
-						if (ptr1->prev && ptr1->prev->type == WORD)
-							ptr1->prev->type = TEMP;
-						if (!ptr1->next->next || ptr1->next->type == WHITE_SPACE)
-							ptr1->prev->type = WORD;
 						ptr1->content = parse_quotes2(ptr1,ptr1->type,FILE_NAME);
-						printf("%s\n", ptr1->content);
 						ptr1->type  = FILE_NAME;
 					}
 					else
@@ -84,13 +84,6 @@ int	parse_cmd_act(t_elm *ptr,cmd_pipe **cmds)
 						break;
 				}
 			}
-			// else if (ptr1->type == DOUBLE_QUOTE || ptr1->type == QOUTE)
-			// {
-			// 	if (ptr1->prev && ptr1->prev->type == WORD)
-			// 		ptr1->prev->type = TEMP;
-			// 	if (!ptr1->next->next || ptr1->next->type == WHITE_SPACE)
-			// 		ptr1->prev->type = WORD;
-			// }
 			ptr1 = ptr1->next;
 	}
 	full_cmd = *cmds;
@@ -120,24 +113,21 @@ int	parse_cmd_act(t_elm *ptr,cmd_pipe **cmds)
 		
 		else if (ptr->type == WORD)
 		{
-			//printf("------%s\n\n\n",ptr->content);
 			parse_word(&ptr, full_cmd->args, &i);
 		}
-		else if (ptr->type == DOUBLE_QUOTE || ptr->type == QOUTE)
+		else if ((ptr->type == DOUBLE_QUOTE || ptr->type == QOUTE))
 		{
 			full_cmd->args[i] = parse_quotes(&ptr, ptr->type);
-			//printf("{%s}\n",full_cmd->args[i]);
 			if (full_cmd->args[i])
+			{
 				(i)++;
+			}
 		}
 		else 
 		{
 			(ptr) = (ptr)->next;
 		}
 	}
-	//printf("i :%d\n",i);
-	//printf("i :%p\n",full_cmd->args);
-	//printf("i :%d\n");
 	full_cmd->args[i] = NULL;
 	return (EXIT_SUCCESS);
 }

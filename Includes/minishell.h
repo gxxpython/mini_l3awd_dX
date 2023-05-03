@@ -6,7 +6,7 @@
 /*   By: abouassi <abouassi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 11:31:44 by abouassi          #+#    #+#             */
-/*   Updated: 2023/05/02 18:36:24 by abouassi         ###   ########.fr       */
+/*   Updated: 2023/05/03 11:50:20 by abouassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # include <dirent.h>
 # include <string.h>
 # include <limits.h>
-
 int	glob_exit;
 
 enum t_token
@@ -200,6 +199,7 @@ void cmd_excution(t_global *all, char **env);
 int  cheackis_buil(char *cmd);
 void exucute_builtine(t_global *all,t_cmd *cmds);
 void execution_mini(t_global *all,char **env);
+void handle_sig(int signum);
 
 ////////////////////////////////////////////////////
 
